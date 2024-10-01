@@ -1,9 +1,10 @@
-import com.aluracursos.screenmatch.modelos.Peliculas;
+import com.aluracursos.screenmatch.calculos.CalculadoraDeTiempo;
+import com.aluracursos.screenmatch.modelos.Pelicula;
 import com.aluracursos.screenmatch.modelos.Serie;
 
 public class Principal {
     public static void main(String[] args) {
-        Peliculas miPelicula = new Peliculas();
+        Pelicula miPelicula = new Pelicula();
         miPelicula.setNombre("Encanto");
         miPelicula.setFechaDeLanzamiento(2021);
         miPelicula.setDuracionEnMinutos(120);
@@ -26,20 +27,22 @@ public class Principal {
         casaDragon.muestraFichaTecnica();
         System.out.println(casaDragon.getDuracionEnMinutos());
 
+        Pelicula otraPelicula = new Pelicula();
+
+        otraPelicula.setNombre("Matrix")  ;
+        otraPelicula.setFechaDeLanzamiento(1999);  ;
+        otraPelicula.setDuracionEnMinutos(150);
+        otraPelicula.setIncluidoEnElPlan(false);
+
+        otraPelicula.muestraFichaTecnica();
+
+        CalculadoraDeTiempo calculadora = new CalculadoraDeTiempo() ;
+        calculadora.incluye(miPelicula);
+        calculadora.incluye(casaDragon);
+        calculadora.incluye(otraPelicula);
+        System.out.println("Tiempo necesario para ver tus titulos favoritos: " + calculadora.getTiempoTotal() + " minutos.");
 
 
-
-
-
-
-//        com.aluracursos.screenmatch.modelos.Peliculas otraPelicula = new com.aluracursos.screenmatch.modelos.Peliculas() ;
-//
-//        otraPelicula.nombre = "Matrix" ;
-//        otraPelicula.fechaDeLanzamiento = 1999 ;
-//        otraPelicula.duracionEnMinutos = 150 ;
-//        otraPelicula.incluidoEnElPlan = false ;
-//
-//        otraPelicula.muestraFichaTecnica();
     }
 
 
