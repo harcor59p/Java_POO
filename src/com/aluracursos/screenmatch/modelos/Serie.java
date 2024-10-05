@@ -1,9 +1,12 @@
 package com.aluracursos.screenmatch.modelos;
 
-public class Serie extends Titulo {
+import com.aluracursos.screenmatch.calculos.Clasificable;
+
+public class Serie extends Titulo implements Clasificable {
     int temporadas ;
     int episodiosPorTemporada;
     int minutosPorEpisodio ;
+    int totalVisualizaciones ;
 
     @Override
     public int getDuracionEnMinutos() {
@@ -32,5 +35,14 @@ public class Serie extends Titulo {
 
     public void setMinutosPorEpisodio(int minutosPorEpisodio) {
         this.minutosPorEpisodio = minutosPorEpisodio;
+    }
+
+    @Override
+    public int getClasificacion() {
+        if(totalVisualizaciones > 100){
+            return 4 ;
+        }else {
+            return  2 ;
+        }
     }
 }

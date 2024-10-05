@@ -1,4 +1,6 @@
 import com.aluracursos.screenmatch.calculos.CalculadoraDeTiempo;
+import com.aluracursos.screenmatch.calculos.FiltroRecomendacion;
+import com.aluracursos.screenmatch.modelos.Episodio;
 import com.aluracursos.screenmatch.modelos.Pelicula;
 import com.aluracursos.screenmatch.modelos.Serie;
 
@@ -41,6 +43,15 @@ public class Principal {
         calculadora.incluye(casaDragon);
         calculadora.incluye(otraPelicula);
         System.out.println("Tiempo necesario para ver tus titulos favoritos: " + calculadora.getTiempoTotal() + " minutos.");
+
+        System.out.println("**************************");
+
+        FiltroRecomendacion filtroRecomendacion = new FiltroRecomendacion();
+        filtroRecomendacion.filtra(miPelicula);
+
+        Episodio episodio = new Episodio();
+        
+        
 
 
     }
