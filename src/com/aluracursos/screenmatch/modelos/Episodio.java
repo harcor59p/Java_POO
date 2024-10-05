@@ -1,16 +1,27 @@
 package com.aluracursos.screenmatch.modelos;
 
-public class Episodio {
+import com.aluracursos.screenmatch.calculos.Clasificable;
+
+public class Episodio implements Clasificable {
     private int numero ;
     private String nombre ;
     private Serie serie ;
+    private int totalVisualizaciones ;
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
 
     public int getNumero() {
         return numero;
     }
 
-    public void setNumero(int numero) {
-        this.numero = numero;
+    public int getTotalVisualizaciones() {
+        return totalVisualizaciones;
+    }
+
+    public void setTotalVisualizaciones(int totalVisualizaciones) {
+        this.totalVisualizaciones = totalVisualizaciones;
     }
 
     public String getNombre() {
@@ -27,5 +38,14 @@ public class Episodio {
 
     public void setSerie(Serie serie) {
         this.serie = serie;
+    }
+
+    @Override
+    public int getClasificacion() {
+        if(totalVisualizaciones > 100){
+            return 4 ;
+        }else {
+            return  2 ;
+        }
     }
 }

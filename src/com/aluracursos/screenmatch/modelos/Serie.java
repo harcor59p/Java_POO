@@ -8,6 +8,14 @@ public class Serie extends Titulo implements Clasificable {
     int minutosPorEpisodio ;
     int totalVisualizaciones ;
 
+    public int getTotalVisualizaciones() {
+        return totalVisualizaciones;
+    }
+
+    public void setTotalVisualizaciones(int totalVisualizaciones) {
+        this.totalVisualizaciones = totalVisualizaciones;
+    }
+
     @Override
     public int getDuracionEnMinutos() {
         return temporadas * episodiosPorTemporada * minutosPorEpisodio ;

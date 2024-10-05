@@ -50,8 +50,15 @@ public class Principal {
         filtroRecomendacion.filtra(miPelicula);
 
         Episodio episodio = new Episodio();
-        
-        
+        episodio.setNumero(1);
+        episodio.setNombre("La casa targerian");
+        episodio.setSerie(casaDragon);
+        episodio.setTotalVisualizaciones(100);
+
+        filtroRecomendacion.filtra(episodio);
+
+
+
 
 
     }
