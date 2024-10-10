@@ -18,4 +18,8 @@ public class Pelicula extends Titulo implements Clasificable {
     public int getClasificacion() {
         return (int) (calcularMedia() / 2);
     }
+
+    public String toString(){
+        return "Pelicula: " + this.getNombre() + " (" + getFechaDeLanzamiento() + ")" ;
+    }
 }
