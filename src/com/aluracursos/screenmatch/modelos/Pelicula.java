@@ -6,6 +6,11 @@ public class Pelicula extends Titulo implements Clasificable {
 
     private String directoor ;
 
+
+    public Pelicula(String nombre, int fechaDeLanzamiento) {
+        super(nombre, fechaDeLanzamiento);
+    }
+
     public String getDirectoor() {
         return directoor;
     }

@@ -8,6 +8,10 @@ public class Serie extends Titulo implements Clasificable {
     int minutosPorEpisodio ;
     int totalVisualizaciones ;
 
+    public Serie(String nombre, int fechaDeLanzamiento) {
+        super(nombre, fechaDeLanzamiento);
+    }
+
     public int getTotalVisualizaciones() {
         return totalVisualizaciones;
     }
