@@ -1,7 +1,11 @@
 package com.aluracursos.screenmatch.modelos;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Titulo {
+    @SerializedName("Title")
     private String nombre ;
+    @SerializedName("Year")
     private int fechaDeLanzamiento ;
     private int duracionEnMinutos ;
     private boolean incluidoEnElPlan   ;
@@ -11,6 +15,12 @@ public class Titulo {
     public Titulo(String nombre, int fechaDeLanzamiento) {
         this.nombre = nombre;
         this.fechaDeLanzamiento = fechaDeLanzamiento;
+    }
+
+    public Titulo(TituloOmdb mitituloOdmb) {
+        this.nombre = mitituloOdmb.title();
+        this.fechaDeLanzamiento = Integer.valueOf(mitituloOdmb.year()) ;
+        this.duracionEnMinutos = Integer.valueOf(mitituloOdmb.runtime().substring(0,2)) ;
     }
 
     public String getNombre() {
@@ -68,5 +78,12 @@ public class Titulo {
 
     public double calcularMedia(){
         return sumadeLasEvaluaciones / totalDeLasEvaluaciones ;
+    }
+
+    @Override
+    public String toString() {
+        return  "nombre='" + nombre + '\'' +
+                ", fechaDeLanzamiento=" + fechaDeLanzamiento +
+                " duración = " + duracionEnMinutos ;
     }
 }
