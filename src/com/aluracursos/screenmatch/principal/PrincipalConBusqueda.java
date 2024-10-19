@@ -8,6 +8,7 @@ import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
 import java.net.URI;
+import java.net.URLEncoder;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -19,27 +20,43 @@ public class PrincipalConBusqueda {
         Scanner lectura = new Scanner(System.in) ;
         System.out.println("Escriba el nombre de la pelicula: ");
         var busqueda = lectura.nextLine() ;
+        String encodedUrl = URLEncoder.encode(busqueda, "UTF-8");
 
-        String direccion = "https://www.omdbapi.com?t="+busqueda+"&apikey=4f54209a" ;
 
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(direccion))
-                .build();
+        String direccion = "https://www.omdbapi.com?t="+encodedUrl+"&apikey=4f54209a" ;
+        System.out.println(direccion);
 
-        HttpResponse<String> response = client
-                .send(request, HttpResponse.BodyHandlers.ofString());
+        try{
+            HttpClient client = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(direccion))
+                    .build();
 
-        String json = response.body() ;
+            HttpResponse<String> response = client
+                    .send(request, HttpResponse.BodyHandlers.ofString());
 
-        System.out.println(response.body());
+            String json = response.body() ;
 
-        Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
-                .create();
-        TituloOmdb mitituloOdmb = gson.fromJson(json , TituloOmdb.class) ;
-        System.out.println("Titulo: " + mitituloOdmb);
-        Titulo mititulo = new Titulo(mitituloOdmb) ;
-        System.out.println(mititulo);
+            System.out.println(response.body());
+
+            Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
+                    .create();
+            TituloOmdb mitituloOdmb = gson.fromJson(json , TituloOmdb.class) ;
+            System.out.println("Titulo: " + mitituloOdmb);
+
+            Titulo mititulo = new Titulo(mitituloOdmb) ;
+            System.out.println(mititulo);
+        }catch (NumberFormatException e) {
+            System.out.println("Ocurrio un error ");
+            System.out.println(e.getMessage());
+        }catch (IllegalArgumentException e){
+            System.out.println("Error en l aURI, verifique la dirección");
+        }catch (Exception e){
+            System.out.println("Ocurrio un error inesperado");
+        }
+
+        System.out.println("Finalizó la ejecucion del progama!");
+
 
 
     }
