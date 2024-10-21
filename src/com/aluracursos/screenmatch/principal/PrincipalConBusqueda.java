@@ -1,11 +1,13 @@
 package com.aluracursos.screenmatch.principal;
 
+import com.aluracursos.screenmatch.exeptions.ErrorEnConversionDeDuracionException;
 import com.aluracursos.screenmatch.modelos.Titulo;
 import com.aluracursos.screenmatch.modelos.TituloOmdb;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URLEncoder;
@@ -46,11 +48,18 @@ public class PrincipalConBusqueda {
 
             Titulo mititulo = new Titulo(mitituloOdmb) ;
             System.out.println(mititulo);
+
+            FileWriter escritura = new FileWriter("peliculas.txt");
+            escritura.write(mititulo.toString());
+            escritura.close();
+
         }catch (NumberFormatException e) {
             System.out.println("Ocurrio un error ");
             System.out.println(e.getMessage());
         }catch (IllegalArgumentException e){
             System.out.println("Error en l aURI, verifique la dirección");
+        }catch (ErrorEnConversionDeDuracionException e){
+            System.out.println(e.getMessage());
         }catch (Exception e){
             System.out.println("Ocurrio un error inesperado");
         }
