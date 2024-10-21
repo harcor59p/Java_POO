@@ -86,8 +86,8 @@ public class Titulo {
 
     @Override
     public String toString() {
-        return  "nombre='" + nombre + '\'' +
+        return  "(nombre=" + nombre +
                 ", fechaDeLanzamiento=" + fechaDeLanzamiento +
-                " duración = " + duracionEnMinutos ;
+                " , duración = " + duracionEnMinutos + ")" ;
     }
 }
